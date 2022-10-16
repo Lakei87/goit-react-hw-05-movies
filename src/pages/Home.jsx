@@ -10,11 +10,11 @@ export function Home() {
     const [movies, setMovies] = useState([]);
     
     useEffect(() => {        
-        const fetchTrending = async() => {
+        const fetchMovies = async() => {
             const responce = await moviesApi.fetchTrending();
             setMovies(responce.results)
         };
-        fetchTrending();
+        fetchMovies();
     }, []);
 
     return (
