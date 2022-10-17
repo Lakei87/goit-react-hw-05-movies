@@ -20,5 +20,17 @@ export class MoviesApiService {
         const responce = await axios.get(url);
         return responce.data;
     };
+
+    async getCredits() {
+        const url = `${BASE_URL}/movie/${this.ID}/credits?${API_KEY}&language=en-US`;
+        const responce = await axios.get(url);
+        return responce.data;
+    };
     
+    async getReviews() {
+        const url = `${BASE_URL}/movie/${this.ID}/reviews?${API_KEY}&language=en-US`;
+        const responce = await axios.get(url);
+        return responce.data;
+    };
+
 };
