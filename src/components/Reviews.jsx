@@ -13,7 +13,6 @@ export default function Reviews() {
         const getReviews = async () => {
         const responce = await moviesApi.getReviews();
         setReviews(responce.results);
-        console.log(responce.results);
         }
         getReviews();
     }, []);

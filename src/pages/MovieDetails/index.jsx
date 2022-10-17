@@ -2,7 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { MoviesApiService } from "services/moviesApi";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieDetails.styled";
+import { GoBackLink, Icon, Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieDetails.styled";
 import { createGenresList } from "helpers/createGenresList";
 
 const moviesApi = new MoviesApiService();
@@ -27,7 +27,10 @@ export default function MovieDetails() {
 
     return (
         <main>
-            <Link to={'/'}>go back</Link>
+            <GoBackLink to={'/'}>
+                <Icon />
+                <p>Go back</p>
+            </GoBackLink>
             <Container>
                 <Poster src={`${urlImg}${poster_path}`} alt="poster" />
                 <MovieDesc>
@@ -41,7 +44,6 @@ export default function MovieDetails() {
                         Genres
                         <Text>{genres}</Text>
                     </Genres>
-
                 </MovieDesc>
             </Container>
             <div>
