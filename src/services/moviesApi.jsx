@@ -20,4 +20,5 @@ export class MoviesApiService {
         const responce = await axios.get(url);
         return responce.data;
     };
+    
 };
