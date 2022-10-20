@@ -6,11 +6,9 @@ export default function GoBackLink() {
     console.log(location);
 
     return (
-        <div>
-            <Link to={location.state?.from ?? '/'}>
-                <Icon />
-                <p>Go back</p>
-            </Link>
-        </div>
+        <Link to={location.state?.from ?? '/'}>
+            <Icon />
+            <p>Go back</p>
+        </Link>
     );
 };

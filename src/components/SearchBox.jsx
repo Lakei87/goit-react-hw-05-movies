@@ -1,3 +1,4 @@
+import Notiflix from "notiflix";
 import { useState } from "react";
 
 export default function SearchBox({ onSubmit }) {
@@ -10,7 +11,12 @@ export default function SearchBox({ onSubmit }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        onSubmit(searchQuery);
+        
+        if (searchQuery.trim() !== '') {
+            onSubmit(searchQuery);
+        } else {
+            Notiflix.Notify.failure('Nothing was found according to your request. Please, try again')
+        }
     };
 
     return (
