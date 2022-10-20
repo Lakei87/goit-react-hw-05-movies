@@ -1,9 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { MoviesApiService } from "services/moviesApi";
 import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { GoBackLink, Icon, Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieDetails.styled";
+import { Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieDetails.styled";
 import { createGenresList } from "helpers/createGenresList";
+import GoBackLink from "components/GoBackLink";
 
 const moviesApi = new MoviesApiService();
 const urlImg = 'https://image.tmdb.org/t/p/w500/';
@@ -27,10 +28,7 @@ export default function MovieDetails() {
 
     return (
         <main>
-            <GoBackLink to={'/'}>
-                <Icon />
-                <p>Go back</p>
-            </GoBackLink>
+            <GoBackLink />
             <Container>
                 <Poster src={`${urlImg}${poster_path}`} alt="poster" />
                 <MovieDesc>

@@ -9,6 +9,12 @@ export class MoviesApiService {
         this.ID = ''
     };
 
+    async fetchMovies() {
+        const url = `${BASE_URL}/search/movie?${API_KEY}&query=${this.query}&language=en-US`;
+        const responce = await axios.get(url);
+        return responce.data;
+    }
+
     async fetchTrending() {
         const url = `${BASE_URL}/trending/movie/day?${API_KEY}`;
         const responce = await axios.get(url);
