@@ -1,7 +1,7 @@
 import { Box } from "../Box";
 import { Link, Header } from "./appBar.styled";
 
-export const AppBar = () => {
+export default function AppBar() {
     return (
         <Header>
             <Box as='nav'>

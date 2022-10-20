@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
-import { MoviesApiService } from "services/moviesApi";
+import { getTrending } from "services/moviesApi";
 import MoviesList from "components/MoviesList";
 import { Box } from "components/Box";
-
-const moviesApi = new MoviesApiService();
 
 
 export function Home() {
@@ -12,7 +9,7 @@ export function Home() {
     
     useEffect(() => {        
         const fetchMovies = async() => {
-            const responce = await moviesApi.fetchTrending();
+            const responce = await getTrending();
             setMovies(responce.results)
         };
         fetchMovies();
@@ -24,8 +21,4 @@ export function Home() {
             {movies && <MoviesList movies={movies}/>}
         </Box>
     );
-};
-
-Home.propTypes = {
-    movies: PropTypes.arrayOf().isRequired,
 };

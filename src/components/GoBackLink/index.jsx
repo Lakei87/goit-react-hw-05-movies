@@ -3,10 +3,11 @@ import { useLocation } from "react-router-dom";
 
 export default function GoBackLink() {
     const location = useLocation();
-    console.log(location)
+    console.log(location);
+
     return (
         <div>
-            <Link to={location.state?.from ?? '/Home'}>
+            <Link to={location.state?.from ?? '/'}>
                 <Icon />
                 <p>Go back</p>
             </Link>

@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MoviesApiService } from "services/moviesApi";  
+import { getCredits } from "services/moviesApi";  
 
-const moviesApi = new MoviesApiService();
 const urlImg = 'https://image.tmdb.org/t/p/w500/';
-
 
 export default function Cast() {
   const [cast, setCast] = useState([]);
   const { id } = useParams();
-  moviesApi.ID = id;
 
   useEffect(() => { 
-    const getCredits = async () => {
-      const responce = await moviesApi.getCredits();
+    const fetchCredits = async () => {
+      const responce = await getCredits(id);
       setCast(responce.cast);
-      console.log(responce.cast);
     }
-    getCredits();
-  }, []);
+    fetchCredits();
+  }, [id]);
 
   return (
     <div>

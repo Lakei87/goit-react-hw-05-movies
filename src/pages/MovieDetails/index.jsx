@@ -1,29 +1,28 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { MoviesApiService } from "services/moviesApi";
-import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useParams, Outlet, useLocation } from "react-router-dom";
+import GoBackLink from "components/GoBackLink";
+import { getMovieByID } from "services/moviesApi";
 import { Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieDetails.styled";
 import { createGenresList } from "helpers/createGenresList";
-import GoBackLink from "components/GoBackLink";
 
-const moviesApi = new MoviesApiService();
 const urlImg = 'https://image.tmdb.org/t/p/w500/';
 
-export default function MovieDetails() {
+export function MovieDetails() {
     const [movie, setMovie] = useState([]);
     const [genres, setGenres] = useState([]);
     const {poster_path, title, release_date, popularity, overview } = movie;
     const { id } = useParams();
-    moviesApi.ID = id;
+    const location = useLocation();
+    console.log(location)
 
     useEffect(() => { 
         const fetchMovie = async() => {
-            const responce = await moviesApi.fetchMovieByID();
+            const responce = await getMovieByID(id);
             setMovie(responce);
             setGenres(createGenresList(responce.genres));
         }
         fetchMovie();
-    }, []);
+    }, [id]);
     
 
     return (
@@ -47,8 +46,8 @@ export default function MovieDetails() {
             <div>
                 <p>additional information</p>
                 <ul>
-                    <li><Link to='cast'>Cast</Link></li>
-                    <li><Link to='reviews'>Reviews</Link></li>
+                    <li><Link to='cast' state={{from: location.state?.from ?? '/'}}>Cast</Link></li>
+                    <li><Link to='reviews' state={{from: location.state?.from ?? '/'}}>Reviews</Link></li>
                 </ul>
             </div>
             <Outlet/>

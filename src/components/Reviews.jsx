@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { MoviesApiService } from "services/moviesApi";  
-
-const moviesApi = new MoviesApiService();
+import { getReviews } from "services/moviesApi";
 
 export default function Reviews() {
     const [reviews, setReviews] = useState([]);
     const { id } = useParams();
-    moviesApi.ID = id;
 
     useEffect(() => { 
-        const getReviews = async () => {
-        const responce = await moviesApi.getReviews();
+        const fetchReviews = async () => {
+        const responce = await getReviews(id);
         setReviews(responce.results);
         }
-        getReviews();
-    }, []);
+        fetchReviews();
+    }, [id]);
     
     return (
         <div>
