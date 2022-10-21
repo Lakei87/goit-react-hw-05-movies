@@ -3,7 +3,7 @@ import { MoviesList, Box } from "components";
 import { getTrending } from "services/moviesApi";
 
 
-export function Home() {
+export default function Home() {
     const [movies, setMovies] = useState(null);
     
     useEffect(() => {

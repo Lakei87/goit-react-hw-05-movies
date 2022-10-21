@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getCredits } from "services/moviesApi";  
 import { CastItem } from "components";
 
-export function Cast() {
+export default function Cast() {
   const [cast, setCast] = useState([]);
   const { id } = useParams();
 

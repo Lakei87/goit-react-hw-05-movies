@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Box, MoviesList, SearchBox } from 'components';
 import { getMovies } from 'services/moviesApi';
 
-export function Movies() {
+export default function Movies() {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const updSearchQuery = searchParams.get('query');

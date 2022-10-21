@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { countVoteArerage } from "helpers/countVoteAverage";
 import { Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieInfo.styled";
 import posterNotFound from '../../images/poster-not-found.png';
@@ -35,11 +36,11 @@ export function MovieInfo({
     );
 };
 
-// MovieInfo.propTypes = {
-//     genres: PropTypes.string.isRequired,
-//     poster: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     date: PropTypes.string.isRequired,
-//     vote: PropTypes.number.isRequired,
-//     overview: PropTypes.string.isRequired,
-// };
+MovieInfo.propTypes = {
+    genres: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    vote: PropTypes.number.isRequired,
+    overview: PropTypes.string.isRequired,
+};

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams, Outlet, useLocation } from "react-router-dom";
 import { GoBackLink, AdditionalInfo, Box, MovieInfo } from "components";
 import { getMovieByID } from "services/moviesApi";
 import { createGenresList } from "helpers/createGenresList";
 
 
-export function MovieDetails() {
+export default function MovieDetails() {
     const [movie, setMovie] = useState([]);
     const [genres, setGenres] = useState([]);
     const {poster_path, title, release_date, vote_average, overview } = movie;
@@ -37,7 +37,9 @@ export function MovieDetails() {
                 overview={overview}
             />
             <AdditionalInfo location={location.state?.from ?? '/'} />
-            <Outlet/>
+            <Suspense fallback={<div>Loading..</div>}>
+                <Outlet/>
+            </Suspense>
         </Box>
     );
 };
