@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getReviews } from "services/moviesApi";
+import { ReviewsItem } from "components";
 
 export function Reviews() {
     const [reviews, setReviews] = useState([]);
@@ -8,22 +9,29 @@ export function Reviews() {
 
     useEffect(() => { 
         const fetchReviews = async () => {
-        const responce = await getReviews(id);
-        setReviews(responce.results);
-        }
+            try {
+                const responce = await getReviews(id);
+                setReviews(responce.results);
+            } catch (error) {
+                console.log(error);
+            }
+        };
         fetchReviews();
     }, [id]);
     
     return (
-        <div>
-            <ul>
-                {reviews.map(({ author, id, content }) => (
-                    <li key={id}>
-                        <p>{author}</p>
-                        <p>{content}</p>
-                    </li>
-                ))}
-            </ul>
-        </div>
+        <section>
+            {reviews.length > 0 ?
+                <ul>
+                    {reviews.map(({ author, id, content }) => (
+                        <ReviewsItem
+                            key={id}
+                            author={author}
+                            content={content} />
+                      ))}
+                </ul> :
+                <p>There are no reviews yet</p>
+            }
+        </section>
     );
 };

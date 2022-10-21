@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCredits } from "services/moviesApi";  
-
-const urlImg = 'https://image.tmdb.org/t/p/w500/';
+import { CastItem } from "components";
 
 export function Cast() {
   const [cast, setCast] = useState([]);
@@ -10,23 +9,27 @@ export function Cast() {
 
   useEffect(() => { 
     const fetchCredits = async () => {
-      const responce = await getCredits(id);
-      setCast(responce.cast);
-    }
+      try {
+        const responce = await getCredits(id);
+        setCast(responce.cast);
+      } catch (error) {
+        console.log(error)
+      }
+    };
     fetchCredits();
   }, [id]);
 
   return (
-    <div>
+    <section>
       <ul>
-        {cast.map(({id, profile_path, name, character}) => (
-          <li key={id}>
-            <img src={`${urlImg}${profile_path}`} alt={name} />
-            <p>{name}</p>
-            <p>Character: {character}</p>
-          </li>
+        {cast.map(({ id, profile_path, name, character }) => (
+          <CastItem
+            key={id}
+            profile={profile_path}
+            name={name}
+            character={character} />
         ))}
       </ul>
-    </div>
+    </section>
   );
 };

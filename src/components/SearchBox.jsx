@@ -1,5 +1,6 @@
-import Notiflix from "notiflix";
 import { useState } from "react";
+import Notiflix from "notiflix";
+import PropTypes from 'prop-types';
 
 export function SearchBox({ onSubmit }) {
     const [searchQuery, setSearchQuery] = useState('');
@@ -34,4 +35,8 @@ export function SearchBox({ onSubmit }) {
                 </button>
             </form>
     );
+};
+
+SearchBox.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
 };

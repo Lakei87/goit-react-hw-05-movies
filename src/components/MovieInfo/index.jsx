@@ -2,7 +2,7 @@
 import { countVoteArerage } from "helpers/countVoteAverage";
 import { Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieInfo.styled";
 
-const urlImg = 'https://image.tmdb.org/t/p/w500/';
+const baseUrl = 'https://image.tmdb.org/t/p/w500/';
 
 export function MovieInfo({
     genres,
@@ -15,7 +15,7 @@ export function MovieInfo({
     // const releaseDate = Number(date.slice(0, 4));
     return (
         <Container>
-            <Poster src={`${urlImg}${poster}`} alt="poster" />
+            <Poster src={`${baseUrl}${poster}`} alt="poster" />
             <MovieDesc>
                 <Title>{title} ({date})</Title>
                 <Popularity>User Score: {countVoteArerage(vote)}%</Popularity>
