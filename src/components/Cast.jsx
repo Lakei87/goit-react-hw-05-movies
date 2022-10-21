@@ -4,7 +4,7 @@ import { getCredits } from "services/moviesApi";
 
 const urlImg = 'https://image.tmdb.org/t/p/w500/';
 
-export default function Cast() {
+export function Cast() {
   const [cast, setCast] = useState([]);
   const { id } = useParams();
 

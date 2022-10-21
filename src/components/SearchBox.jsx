@@ -1,7 +1,7 @@
 import Notiflix from "notiflix";
 import { useState } from "react";
 
-export default function SearchBox({ onSubmit }) {
+export function SearchBox({ onSubmit }) {
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleInputChange = e => {
@@ -11,7 +11,7 @@ export default function SearchBox({ onSubmit }) {
 
     const handleSubmit = e => {
         e.preventDefault();
-        
+
         if (searchQuery.trim() !== '') {
             onSubmit(searchQuery);
         } else {
@@ -20,18 +20,18 @@ export default function SearchBox({ onSubmit }) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                autoComplete="off"
-                autoFocus
-                placeholder="Search movies"
-                onChange={handleInputChange}
-            />
-            <button
-                type="submit">
-                <span>Search</span>
-            </button>
-        </form>
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    autoComplete="off"
+                    autoFocus
+                    placeholder="Search movies"
+                    onChange={handleInputChange}
+                />
+                <button
+                    type="submit">
+                    <span>Search</span>
+                </button>
+            </form>
     );
 };

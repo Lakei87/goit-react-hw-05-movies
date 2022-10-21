@@ -1,7 +1,7 @@
 import { Link, Icon } from "./goBackLink.styled"
 import { useLocation } from "react-router-dom";
 
-export default function GoBackLink() {
+export function GoBackLink() {
     const location = useLocation();
     console.log(location);
 

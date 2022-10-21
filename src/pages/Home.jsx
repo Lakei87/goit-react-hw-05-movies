@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
+import { MoviesList, Box } from "components";
 import { getTrending } from "services/moviesApi";
-import MoviesList from "components/MoviesList";
-import { Box } from "components/Box";
 
 
 export function Home() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState(null);
     
-    useEffect(() => {        
-        const fetchMovies = async() => {
-            const responce = await getTrending();
-            setMovies(responce.results)
+    useEffect(() => {
+        const fetchMovies = async () => {
+            try {
+                const responce = await getTrending();
+                setMovies(responce.results);
+            } catch (error) {
+                console.log(error);
+            }
         };
         fetchMovies();
     }, []);

@@ -1,7 +1,7 @@
 import { Box } from "../Box";
 import { Link, Header } from "./appBar.styled";
 
-export default function AppBar() {
+export function AppBar() {
     return (
         <Header>
             <Box as='nav'>

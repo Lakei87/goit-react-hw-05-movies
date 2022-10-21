@@ -1,7 +1,7 @@
 import { Box } from "components/Box";
 import { Link } from "react-router-dom";
 
-export default function AdditionalInfo({location}) {
+export function AdditionalInfo({location}) {
     return (
         <Box as='section'>
             <h2>Additional information</h2>
