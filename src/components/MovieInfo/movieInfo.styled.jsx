@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.section`
     display: flex;
+    margin-bottom: 20px;
 `;
 
 export const Poster = styled.img`

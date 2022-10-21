@@ -1,5 +1,5 @@
-import { Link, Icon } from "./goBackLink.styled"
 import { useLocation } from "react-router-dom";
+import { Link, Icon } from "./goBackLink.styled"
 
 export function GoBackLink() {
     const location = useLocation();

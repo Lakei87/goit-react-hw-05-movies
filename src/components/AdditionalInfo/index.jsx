@@ -1,7 +1,9 @@
-import { Box } from "components/Box";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import { Box } from "components";
 
-export function AdditionalInfo({location}) {
+export function AdditionalInfo({ location }) {
+    
     return (
         <Box as='section'>
             <h2>Additional information</h2>
@@ -12,3 +14,10 @@ export function AdditionalInfo({location}) {
         </Box>
     );
 };
+
+AdditionalInfo.propTypes = {
+    location:PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+        search: PropTypes.string.isRequired,
+    }).isRequired,
+}

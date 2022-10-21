@@ -1,6 +1,6 @@
-
 import { countVoteArerage } from "helpers/countVoteAverage";
 import { Container, Poster, MovieDesc, Title, Popularity, Overview, Genres, Text } from "./movieInfo.styled";
+import posterNotFound from '../../images/poster-not-found.png';
 
 const baseUrl = 'https://image.tmdb.org/t/p/w500/';
 
@@ -12,10 +12,13 @@ export function MovieInfo({
     vote,
     overview
 }) {
-    // const releaseDate = Number(date.slice(0, 4));
+    const chooseProfile = urlData => {
+        return (urlData ? `${baseUrl}${urlData}` : posterNotFound);
+    };
+    
     return (
         <Container>
-            <Poster src={`${baseUrl}${poster}`} alt="poster" />
+            <Poster src={chooseProfile(poster)} alt="poster" />
             <MovieDesc>
                 <Title>{title} ({date})</Title>
                 <Popularity>User Score: {countVoteArerage(vote)}%</Popularity>
