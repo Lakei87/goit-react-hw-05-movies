@@ -2,8 +2,8 @@ import { useState } from "react";
 import Notiflix from "notiflix";
 import PropTypes from 'prop-types';
 
-export function SearchBox({ onSubmit }) {
-    const [searchQuery, setSearchQuery] = useState('');
+export function SearchBox({ value, onSubmit }) {
+    const [searchQuery, setSearchQuery] = useState(value);
 
     const handleInputChange = e => {
         const { value } = e.currentTarget;
@@ -21,22 +21,24 @@ export function SearchBox({ onSubmit }) {
     };
 
     return (
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    autoComplete="off"
-                    autoFocus
-                    placeholder="Search movies"
-                    onChange={handleInputChange}
-                />
-                <button
-                    type="submit">
-                    <span>Search</span>
-                </button>
-            </form>
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                autoComplete="off"
+                autoFocus
+                value={searchQuery}
+                placeholder="Search movies"
+                onChange={handleInputChange}
+            />
+            <button
+                type="submit">
+                <span>Search</span>
+            </button>
+        </form>
     );
 };
 
 SearchBox.propTypes = {
     onSubmit: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired,
 };

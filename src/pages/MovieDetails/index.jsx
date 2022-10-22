@@ -6,13 +6,13 @@ import { createGenresList } from "helpers/createGenresList";
 
 
 export default function MovieDetails() {
-    const [movie, setMovie] = useState([]);
+    const [movie, setMovie] = useState(null);
     const [genres, setGenres] = useState([]);
-    const {poster_path, title, release_date, vote_average, overview } = movie;
     const { id } = useParams();
     const location = useLocation();
+    console.log(movie)
 
-    useEffect(() => { 
+    useEffect(() => {
         const fetchMovie = async () => {
             try {
                 const responce = await getMovieByID(id);
@@ -28,14 +28,16 @@ export default function MovieDetails() {
     return (
         <Box as='main' p={4}>
             <GoBackLink />
-            <MovieInfo
-                genres={genres}
-                poster={poster_path}
-                title={title}
-                date={release_date}
-                vote={vote_average}
-                overview={overview}
-            />
+            {movie &&
+                <MovieInfo
+                    genres={genres}
+                    poster={movie.poster_path}
+                    title={movie.title}
+                    date={movie.release_date.slice(0,4)}
+                    vote={movie.vote_average}
+                    overview={movie.overview}
+                />
+            }
             <AdditionalInfo location={location.state?.from ?? '/'} />
             <Suspense fallback={<div>Loading..</div>}>
                 <Outlet/>

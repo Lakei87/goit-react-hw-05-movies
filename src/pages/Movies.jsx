@@ -6,12 +6,12 @@ import { getMovies } from 'services/moviesApi';
 export default function Movies() {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const updSearchQuery = searchParams.get('query');
+  const updSearchQuery = searchParams.get('query') ?? '';
 
   useEffect(() => {
-    if (!updSearchQuery) return;
-
+    
     const fetchMovies = async () => {
+      if (updSearchQuery === '') return;
       try {
         const responce = await getMovies(updSearchQuery);
         setMovies(responce.results);
@@ -30,7 +30,7 @@ export default function Movies() {
 
   return (
     <Box as='main' p={4}>
-      <SearchBox onSubmit={updateQueryString} />
+      <SearchBox value={updSearchQuery} onSubmit={updateQueryString} />
       {movies && <MoviesList movies={movies}/>}
     </Box>
   );
